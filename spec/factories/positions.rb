@@ -16,9 +16,9 @@
 #
 FactoryBot.define do
   factory :position do
-    latitude { "9.99" }
-    longitude { "9.99" }
-    sent_at { "2020-09-30 00:06:58" }
-    vehicle_identifier { "MyString" }
+    vehicle
+    latitude { Faker::Number.decimal(l_digits: 2) }
+    longitude { Faker::Number.decimal(l_digits: 2) }
+    sent_at { Faker::Time.between(from: 3.days.ago, to: Time.now, format: :default) }
   end
 end

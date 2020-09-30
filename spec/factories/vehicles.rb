@@ -9,6 +9,6 @@
 #
 FactoryBot.define do
   factory :vehicle do
-    identifier { "AA-9999" }
+    identifier { Faker::Alphanumeric.alphanumeric(number: 5).upcase }
   end
 end
