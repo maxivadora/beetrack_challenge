@@ -10,8 +10,8 @@
 require 'rails_helper'
 
 RSpec.describe Vehicle, type: :model do
-  context 'model validations' do
-    it { should validate_presence_of(:identifier) }
-    it { should validate_uniqueness_of(:identifier) }
+  context 'validations' do
+    it { is_expected.to validate_presence_of(:identifier) }
+    it { is_expected.to validate_uniqueness_of(:identifier) }
   end
 end
