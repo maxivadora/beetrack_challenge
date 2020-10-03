@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_30_164715) do
+ActiveRecord::Schema.define(version: 2020_10_01_014034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2020_09_30_164715) do
     t.decimal "latitude", precision: 10, scale: 6
     t.decimal "longitude", precision: 10, scale: 6
     t.datetime "sent_at"
-    t.string "vehicle_identifier"
+    t.string "vehicle_identifier", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["vehicle_identifier"], name: "index_positions_on_vehicle_identifier"

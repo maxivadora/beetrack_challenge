@@ -6,7 +6,7 @@
 #  latitude           :decimal(10, 6)
 #  longitude          :decimal(10, 6)
 #  sent_at            :datetime
-#  vehicle_identifier :string
+#  vehicle_identifier :string           not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
@@ -17,5 +17,5 @@
 class Position < ApplicationRecord
   validates :latitude, :longitude, :sent_at, :vehicle_identifier, presence: true
 
-  belongs_to :vehicle, primary_key: :identifier, foreign_key: :vehicle_identifier
+  belongs_to :vehicle, primary_key: :identifier, foreign_key: :vehicle_identifier, optional: true
 end

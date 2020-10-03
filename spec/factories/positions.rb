@@ -6,7 +6,7 @@
 #  latitude           :decimal(10, 6)
 #  longitude          :decimal(10, 6)
 #  sent_at            :datetime
-#  vehicle_identifier :string
+#  vehicle_identifier :string           not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
