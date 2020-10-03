@@ -4,4 +4,6 @@ Rails.application.routes.draw do
       resource :positions, only: %i[create]
     end
   end
+
+  get '/show', to: 'dashboard#index'
 end
