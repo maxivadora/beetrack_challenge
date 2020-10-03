@@ -1,22 +1,6 @@
 version: '3.7'
 
 services:
-  webpacker:
-    build: .
-    command: ./bin/webpack-dev-server
-    volumes:
-      - .:/app
-    ports:
-      - '3035:3035'
-    environment:
-      - WEBPACKER_SERVER_HOST=0.0.0.0
-  db:
-    image: postgres:12
-    volumes:
-      - ./pg_data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_USER: ${DB_USER}
   app:
     build: .
     command: bundle exec rails server -b 0.0.0.0 -p 3000
@@ -26,9 +10,15 @@ services:
       - 3000:3000
     depends_on:
       - db
-      - webpacker
     environment:
-      - WEBPACKER_SERVER_HOST=WEBPACKER_SERVER_HOST
+      - WEBPACKER_SERVER_HOST=${WEBPACKER_SERVER_HOST}
       - DB_PASSWORD= ${DB_PASSWORD}
       - DB_USER= ${DB_USER}
       - DB_HOST= ${DB_HOST}
+  db:
+    image: postgres:12
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USER}
