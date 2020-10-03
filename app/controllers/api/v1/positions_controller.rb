@@ -1,9 +1,14 @@
 module API::V1
   class PositionsController < BaseController
     def create
-      vehicle = Vehicle.find_or_create_by(identifier: position_params[:vehicle_identifier])
-      position = vehicle.positions.new(position_params)
-      render_success(message: 'Position created')
+      position = Position.new(position_params)
+
+      if position.valid?
+        CreatePositionJob.perform_later(position_params)
+        render_success(message: 'Position created!.')
+      else
+        render_error(errors: position.errors, status_code: :unprocessable_entity)
+      end
     end
 
     private
