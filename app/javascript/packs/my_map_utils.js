@@ -3,9 +3,23 @@ renderMap = (vehicleWithPositionArray) => {
   const map = initMap(center);
 
   vehicleWithPositionArray.forEach((elem) => {
-    let marker = createMarker(elem.positions[0], elem.name)
+    
+    if (elem.positions[0] == undefined ) { return }
+
+    // create marker
+    const positionMarker = createLatLng(elem.positions[0])
+
+    let marker = createMarker(positionMarker, elem.name)
     marker.setMap(map)
-    addInfowindowToMarker(marker, elem.name)
+
+    const content = `${elem.name} - ${elem.positions[0].sent_at}`
+    addInfowindowToMarker(marker, content)
+
+    // create polyline
+
+    const polylinePath = buildPolylinePath(elem.positions)
+    let polyline = createPolyline(polylinePath)
+    polyline.setMap(map)
   });
 }
 
@@ -23,6 +37,23 @@ createMarker = (latLng, title) => {
   });
 }
 
+createPolyline = (path) => {
+  return new google.maps.Polyline({
+    path: path,
+    geodesic: true,
+    strokeColor: getRandomColor(),
+    strokeOpacity: 1.0,
+    strokeWeight: 2,
+  });
+}
+
+createLatLng = (position) => {
+  return {
+    lat: parseFloat(position.latitude),
+    lng: parseFloat(position.longitude)
+  }
+}
+
 addInfowindowToMarker = (marker, contentString) => {
   const infowindow = new google.maps.InfoWindow({
     content: contentString,
@@ -31,4 +62,22 @@ addInfowindowToMarker = (marker, contentString) => {
   marker.addListener("click", () => {
     infowindow.open(map, marker);
   });
+}
+
+buildPolylinePath = (positions) => {
+  return positions.map((position) => {
+    return createLatLng(position)
+  })
+}
+
+getRandomColor = () => {
+  colors = [
+    '#FF1744', '#00B0FF',
+    '#FFEA00', '#D500F9',
+    '#1DE9B6', '#FF9100',
+    '#3D5AFE', '#FF3D00',
+    '#FFFFFF', '#607D8B',
+  ]
+  randomIndex = Math.floor(colors.length * Math.random());
+  return colors[randomIndex]
 }
