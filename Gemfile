@@ -7,6 +7,7 @@ ruby '2.7.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem "daemons"
 gem 'delayed_job_active_record'
+gem 'gon'
 gem 'jbuilder', '~> 2.7'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
