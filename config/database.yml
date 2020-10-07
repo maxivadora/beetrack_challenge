@@ -15,5 +15,4 @@ test:
   database: app_test
 
 production:
-  <<: *default
-  database: app_production
+  url: <%= ENV['DATABASE_URL'] %>
