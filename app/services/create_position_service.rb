@@ -4,17 +4,14 @@ class CreatePositionService
   end
 
   def perform
-    return false unless can_find_or_create_vehicle?
-
-    return false unless Position.create(@params)
-    
-    true
+    return true if can_find_or_create_vehicle? && Position.create(@params)
   end
 
   private
 
   def can_find_or_create_vehicle?
+    return false if @params[:vehicle_identifier].nil?
+
     vehicle = Vehicle.where(identifier: @params[:vehicle_identifier]).first_or_create
-    return true if vehicle.id
   end
 end
