@@ -1,6 +1,7 @@
 renderMap = (vehicleWithPositionArray) => {
   const center = { lat: -26.82414, lng: -65.2226 };
   const map = initMap(center);
+  let bounds = new google.maps.LatLngBounds()
 
   vehicleWithPositionArray.forEach((elem) => {
     
@@ -12,6 +13,8 @@ renderMap = (vehicleWithPositionArray) => {
     let marker = createMarker(positionMarker, elem.name)
     marker.setMap(map)
 
+    bounds.extend(positionMarker)
+
     const content = `${elem.name} - ${elem.positions[0].sent_at}`
     addInfowindowToMarker(marker, content)
 
@@ -21,6 +24,7 @@ renderMap = (vehicleWithPositionArray) => {
     let polyline = createPolyline(polylinePath)
     polyline.setMap(map)
   });
+  map.fitBounds(bounds)
 }
 
 initMap = (center) => {
