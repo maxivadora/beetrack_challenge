@@ -12,7 +12,7 @@ RSpec.describe 'Positions', type: :request do
     end
 
     context "with invalid position" do
-      let(:invalid_position_attributes) { attributes_for :position }
+      let(:invalid_position_attributes) { attributes_for :position, latitude: ' ' }
 
       it 'response unprocessable entity' do
         post '/api/v1/gps', params: { position: invalid_position_attributes }
