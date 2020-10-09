@@ -44,13 +44,21 @@ RSpec.describe CreatePositionService do
     end
 
     context 'private methods' do
+      let(:vehicle) { create(:vehicle) }
       
       context 'when vehicle params are invalid' do
-        let(:vehicle) { create(:vehicle) }
         subject { CreatePositionService.new({ vehicle_identifier: nil }) }
         
         it 'returns false' do
           expect(subject.send(:can_find_or_create_vehicle?)).to be_falsy
+        end
+      end
+
+      context 'when vehicle params are valid and exists' do
+        subject { CreatePositionService.new({ vehicle_identifier: vehicle.identifier }) }
+        
+        it 'returns false' do
+          expect(subject.send(:can_find_or_create_vehicle?).id).to eq(vehicle.id)
         end
       end
     end

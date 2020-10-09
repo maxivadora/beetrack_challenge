@@ -19,7 +19,7 @@ class Position < ApplicationRecord
   
   validates :latitude, :longitude, :sent_at, :vehicle_identifier, presence: true
 
-  belongs_to :vehicle, primary_key: :identifier, foreign_key: :vehicle_identifier, optional: true
+  belongs_to :vehicle, primary_key: :identifier, foreign_key: :vehicle_identifier
 
   scope :most_recent, -> { order(sent_at: :desc).limit(LIMIT_MOST_RECENT) }
 end
