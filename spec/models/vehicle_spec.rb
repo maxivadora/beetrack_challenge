@@ -7,6 +7,10 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_vehicles_on_identifier  (identifier) UNIQUE
+#
 require 'rails_helper'
 
 RSpec.describe Vehicle, type: :model do
