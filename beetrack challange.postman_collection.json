@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "9e8e1532-40a4-44e5-ab37-54a67830151c",
+		"name": "beetrack challange",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "add position",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"position\": {\n        \"latitude\": -25.585385,\n        \"longitude\": -66.834556,\n        \"sent_at\": \"2020-10-11 21:45:00\",\n        \"vehicle_identifier\": \"HA-3453\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/gps",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"gps"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d70f6562-e95a-42e6-8b50-4a348d479d04",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "a05350e8-7fe0-4acc-a395-71f7fa4d3cb8",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "0c162ef9-47f2-4977-8170-6c4a55fc9e1c",
+			"key": "base_url",
+			"value": ""
+		}
+	],
+	"protocolProfileBehavior": {}
+}

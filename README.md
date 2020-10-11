@@ -59,3 +59,6 @@ params:
   "vehicle_identifier": "HA-3452"
 }
 ```
+
+## Postman collection
+In the repository, there is a postman collection called beetrack challange.postman_collection.json.
