@@ -1,24 +1,61 @@
-# README
+# Beetrack challenge!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+There is a [demo](https://beetrack-challange.herokuapp.com/show) in Heroku.
 
-Things you may want to cover:
+## Preparation
+* ruby-2.7.0
+* rails (6.0.3.3)
+* postgresql 12
+* yarn 1.22.5
+* docker 19.03.12
+* docker-compose 1.26.2
+* rspec-core 3.9
 
-* Ruby version
+### Envirment variables
+```
+DB_PASSWORD=
+DB_USER=
+DB_HOST=
+WEBPACKER_SERVER_HOST=
+GOOGLE_MAP_KEY=
+```
 
-* System dependencies
+## Installation and run project with docker
 
-* Configuration
+Clone this repository.
+````
+$ git@github.com:maxivadora/beetrack_challenge.git
+$ cd beetrack_challenge
+````
+Up docker container.
+```
+$ docker-compose up --build
+```
+Initialize database and seed data.
+```
+$ docker-compose exec rails rake db:create db:migrate db:seed
+```
+Open in browser
+```
+http://localhost:3000/show
+```
 
-* Database creation
+Run specs
+```
+$ docker-compose run app rspec .
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## API Doc
+Add position by vehicle.
+```
+POST /api/v1/gps
+headers:
+    Content-Type: application/json
+params:
+{
+  "latitude": 20.23,
+  "longitude": -0.56,
+  "sent_at": 2016-06-02 20:45:00",
+  "vehicle_identifier": "HA-3452"
+}
+```

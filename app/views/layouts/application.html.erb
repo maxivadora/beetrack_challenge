@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>App</title>
+    <title>Beetrack!</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= Gon::Base.render_data %>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAP_KEY']}"
+      defer
+    ></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'shared/topbar' %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>
