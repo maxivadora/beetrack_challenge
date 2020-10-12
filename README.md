@@ -33,7 +33,13 @@ $ docker-compose up --build
 ```
 Initialize database and seed data.
 ```
-$ docker-compose exec rails rake db:create db:migrate db:seed
+$ docker-compose exec app rails db:create
+$ docker-compose exec app rails db:migrate
+$ docker-compose exec app rails db:seed
+```
+Install dependences with yarn.
+```
+$ docker-compose exec app yarn
 ```
 Open in browser
 ```
